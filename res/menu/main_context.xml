@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/activateplan" android:title="@string/activate_now"></item>
+	<item android:title="@string/edit" android:id="@+id/editplan"></item><item android:id="@+id/deleteplan" android:title="@string/delete"></item>
+	
+</menu>

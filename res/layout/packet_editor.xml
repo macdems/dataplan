@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="wrap_content"
+	android:layout_width="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:orientation="vertical">
+		<TextView android:layout_height="wrap_content"
+			style="?android:attr/listSeparatorTextViewStyle"
+			android:layout_width="fill_parent" android:text="@string/plan_details"></TextView>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/plan_name"></TextView>
+		<EditText android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:id="@+id/editName"
+			android:inputType="text"></EditText>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/ussd_code"></TextView>
+		<EditText android:id="@+id/editUSSD" android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:inputType="phone"></EditText>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:drawingCacheQuality="high"
+			android:text="@string/validity_period"></TextView>
+		<LinearLayout android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:orientation="horizontal">
+			<EditText android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/editPeriod"
+				android:layout_weight="1" android:inputType="number"></EditText>
+			<Spinner android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/spinnerPeriodUnit"></Spinner>
+		</LinearLayout>
+		<TextView android:layout_height="wrap_content"
+			style="?android:attr/listSeparatorTextViewStyle"
+			android:layout_width="fill_parent" android:text="@string/plan_status"></TextView>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/last_used"></TextView>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/textLastUsed"
+			android:text="–" android:textSize="20dip"
+			android:layout_marginBottom="8dip"></TextView>
+		<LinearLayout android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:orientation="horizontal">
+			<LinearLayout android:layout_height="wrap_content"
+				android:layout_weight="1" android:layout_width="wrap_content"
+				android:orientation="vertical">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="@string/valid_until"></TextView>
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/textValidUntil"
+					android:text="–" android:textSize="20dip"
+					android:layout_marginBottom="8dip"></TextView>
+			</LinearLayout>
+			<Button android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/buttonChangeValidity"
+				android:layout_gravity="right" android:text="@string/change"></Button>
+		</LinearLayout>
+		<TextView android:layout_height="wrap_content"
+			style="?android:attr/listSeparatorTextViewStyle"
+			android:layout_width="fill_parent" android:text="@string/automatic_activation"></TextView>
+		<CheckBox android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:id="@+id/checkActive"
+			android:text="@string/automatic_activation"></CheckBox>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/activation_delay"></TextView>
+		<LinearLayout android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:orientation="horizontal"
+			android:id="@+id/layoutDelay">
+			<EditText android:id="@+id/editDelay" android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:layout_weight="1"
+				android:inputType="number"></EditText>
+			<Spinner android:id="@+id/spinnerDelayUnit"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
+			<Spinner android:id="@+id/spinnerDelaySign"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
+		</LinearLayout>
+		<Button android:id="@+id/buttonDone" android:text="@string/done" android:layout_height="wrap_content" android:layout_width="fill_parent"></Button>
+	</LinearLayout>
+</ScrollView>

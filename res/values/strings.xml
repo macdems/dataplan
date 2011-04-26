@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="activate">Activate</string>
+	<string name="activate_now">Activate now</string>
+	<string name="activation_code">Activation code</string>
+	<string name="activation_delay">Reactivate the packet:</string>
+	<string name="app_name">Dataplan Activator</string>
+	<string name="automatic_activation">Automatic activation</string>
+	<string name="automatic">automatic</string>
+	<string name="change">Change</string>
+	<string name="days">days</string>
+	<string name="delete_plan">Delete this plan?</string>
+	<string name="delete">Delete</string>
+	<string name="done">Done</string>
+	<string name="edit_plan">Edit plan</string>
+	<string name="edit">Edit</string>
+	<string name="hours">hours</string>
+	<string name="last_used">Last used:</string>
+	<string name="minutes">minutes</string>
+	<string name="new_plan">New plan</string>
+	<string name="no_plans">No plans defined</string>
+	<string name="no_save_confirm">Do you really want to exit?\nNo changes will be saved!</string>
+	<string name="plan_status">Plan status</string>
+	<string name="plan_details">Plan details</string>
+	<string name="plan_name">Plan name:</string>
+	<string name="preferences">Preferences</string>
+	<string name="time_unit">Time unit</string>
+	<string name="ussd_code">USSD code:</string>
+	<string name="valid_until">Valid until:</string>
+	<string name="validity_period">Validity period:</string>
+
+	<string-array name="time_units">
+		<item>days</item>
+		<item>hours</item>
+		<item>minutes</item>
+		<item>seconds</item>
+	</string-array>
+
+	<string-array name="earlier_later">
+		<item>earlier</item>
+		<item>later</item>
+	</string-array>
+
+	<string name="set_date">Set date</string>
+	<string name="set_time">Set time</string>
+	<string name="reset">Reset</string>
+
+</resources>

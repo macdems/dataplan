@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="activate">Aktywuj</string>
+	<string name="activate_now">Aktywuj teraz</string>
+	<string name="activation_code">Kod aktywujący</string>
+	<string name="activation_delay">Uaktywnij ponownie ten pakiet:</string>
+	<string name="app_name">Aktywator pakietów</string>
+	<string name="automatic_activation">Automatyczna aktywacja</string>
+	<string name="automatic">automatyczny</string>
+	<string name="change">Zmień</string>
+	<string name="days">dni</string>
+	<string name="delete_plan">Skasować ten pakiet?</string>
+	<string name="delete">Skasuj</string>
+	<string name="done">Zrobione</string>
+	<string name="edit_plan">Edytuj pakiet</string>
+	<string name="edit">Edytuj</string>
+	<string name="hours">godzin</string>
+	<string name="last_used">Ostatnio użyty:</string>
+	<string name="minutes">minut</string>
+	<string name="new_plan">Nowy pakiet</string>
+	<string name="no_plans">Nie ma zdefiniowanych pakietów</string>
+	<string name="no_save_confirm">Na pewno chcesz wyjść?\nŻadne zmiany nie zostaną zapisane!</string>
+	<string name="plan_status">Status pakietu</string>
+	<string name="plan_details">Szczegóły pakietu</string>
+	<string name="plan_name">Nazwa pakietu:</string>
+	<string name="preferences">Preferencje</string>
+	<string name="time_unit">Jednostka czasu</string>
+	<string name="ussd_code">Kod USSD:</string>
+	<string name="valid_until">Ważny do:</string>
+	<string name="validity_period">Okres ważności:</string>
+
+	<string-array name="time_units">
+		<item>dni</item>
+		<item>godzin</item>
+		<item>minut</item>
+		<item>sekund</item>
+	</string-array>
+
+	<string-array name="earlier_later">
+		<item>wcześniej</item>
+		<item>później</item>
+	</string-array>
+
+	<string name="set_date">Ustaw datę</string>
+	<string name="set_time">Ustaw godzinę</string>
+
+</resources>
