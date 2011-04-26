@@ -117,11 +117,14 @@ public class DateTimePicker extends RelativeLayout implements View.OnClickListen
 		}
 	}
 
-	// Convenience wrapper for internal Calendar instance
+	public Calendar getCalendar() {
+		return mCalendar;
+	}
+
 	public int get(final int field) {
 		return mCalendar.get(field);
 	}
-
+	
 	// Reset DatePicker, TimePicker and internal Calendar instance
 	public void reset() {
 		final Calendar c = Calendar.getInstance();
@@ -147,11 +150,13 @@ public class DateTimePicker extends RelativeLayout implements View.OnClickListen
 	// Convenience wrapper for internal DatePicker instance
 	public void updateDate(int year, int monthOfYear, int dayOfMonth) {
 		datePicker.updateDate(year, monthOfYear, dayOfMonth);
+		onDateChanged(datePicker, year, monthOfYear, dayOfMonth);
 	}
 
 	// Convenience wrapper for internal TimePicker instance
 	public void updateTime(int currentHour, int currentMinute) {
 		timePicker.setCurrentHour(currentHour);
 		timePicker.setCurrentMinute(currentMinute);
+		onTimeChanged(timePicker, currentHour, currentMinute);
 	}
 }

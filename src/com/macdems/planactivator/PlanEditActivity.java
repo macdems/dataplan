@@ -42,8 +42,8 @@ public class PlanEditActivity extends Activity {
 	private Spinner mSpinnerPeriodUnit;
 	private Spinner mSpinnerDelayUnit;
 	private Spinner mSpinnerDelaySign;
-	private TextView mLastUsed;
-	private TextView mValidUntil;
+	private TextView mTextLastUsed;
+	private TextView mTextValidUntil;
 	private CheckBox mCheckboxActive;
 	@SuppressWarnings("unused")	private LinearLayout mLayoutDelay;
 	private Button mButtonChangeValidity;
@@ -51,7 +51,8 @@ public class PlanEditActivity extends Activity {
 	
 	private DatabaseAdapter mDbHelper;
 	private Long mRowId;
-	private Date mValidUntilDate;
+	private Date mValidUntil;
+	private boolean mValidDateChanged;
 	
 	public static final long[] Units = new long[] {86400, 3600, 60, 1};
 	//												days   hours minutes seconds
@@ -62,7 +63,8 @@ public class PlanEditActivity extends Activity {
         setContentView(R.layout.packet_editor);
         setTitle(R.string.edit_plan);
    
-        mValidUntilDate = null;
+        mValidUntil = null;
+        mValidDateChanged = false;
         
         ArrayAdapter<CharSequence> unitsAdapter = ArrayAdapter.createFromResource(
                 this, R.array.time_units, android.R.layout.simple_spinner_item);
@@ -82,8 +84,8 @@ public class PlanEditActivity extends Activity {
         mSpinnerDelaySign = (Spinner) findViewById(R.id.spinnerDelaySign);
         mSpinnerDelaySign.setAdapter(signAdapter);
 
-        mLastUsed = (TextView) findViewById(R.id.textLastUsed);
-        mValidUntil = (TextView) findViewById(R.id.textValidUntil);
+        mTextLastUsed = (TextView) findViewById(R.id.textLastUsed);
+        mTextValidUntil = (TextView) findViewById(R.id.textValidUntil);
         
         mEditName = (EditText) findViewById(R.id.editName);
         mEditUSSD = (EditText) findViewById(R.id.editUSSD);
@@ -91,8 +93,8 @@ public class PlanEditActivity extends Activity {
         mEditDelay = (EditText) findViewById(R.id.editDelay);
         mEditName = (EditText) findViewById(R.id.editName);
         
-        mLastUsed = (TextView) findViewById(R.id.textLastUsed);
-        mValidUntil = (TextView) findViewById(R.id.textValidUntil);
+        mTextLastUsed = (TextView) findViewById(R.id.textLastUsed);
+        mTextValidUntil = (TextView) findViewById(R.id.textValidUntil);
         
         mCheckboxActive = (CheckBox) findViewById(R.id.checkActive);
         
@@ -295,12 +297,13 @@ public class PlanEditActivity extends Activity {
 	        
 	        Long last = cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseAdapter.KEY_LAST));
 	        if (last != null && last != 0) {
-	        	mLastUsed.setText(DateFormat.getDateFormat(this).format(last) + " " + DateFormat.getTimeFormat(this).format(last));
+	        	mTextLastUsed.setText(DateFormat.getDateFormat(this).format(last) + " " + DateFormat.getTimeFormat(this).format(last));
 	        }
 	        
 	        Long valid = cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseAdapter.KEY_VALIDUNTIL));
 	        if (valid != null && valid != 0) {
-	        	mValidUntil.setText(DateFormat.getDateFormat(this).format(valid) + " " + DateFormat.getTimeFormat(this).format(valid));
+	        	mValidUntil = new Date(valid);
+	        	mTextValidUntil.setText(DateFormat.getDateFormat(this).format(valid) + " " + DateFormat.getTimeFormat(this).format(valid));
 	        }
 
 		}
@@ -349,8 +352,8 @@ public class PlanEditActivity extends Activity {
             if (!active) ActivateEvent.cancelAlarm(this, mRowId);
         }
 
-        if (mValidUntilDate != null)
-        	mDbHelper.updateValidityDate(mRowId, mValidUntilDate);
+        if (mValidDateChanged)
+        	mDbHelper.updateValidityDate(mRowId, mValidUntil);
 
         return true;
     }
@@ -377,11 +380,10 @@ public class PlanEditActivity extends Activity {
 		// Update demo TextViews when the "OK" button is clicked 
 		((Button) dateTimeDialogView.findViewById(R.id.SetDateTime)).setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				mValidUntilDate = new Date(dateTimePicker.get(Calendar.YEAR),
-						                   dateTimePicker.get(Calendar.MONTH), dateTimePicker.get(Calendar.DAY_OF_MONTH),
-						                   dateTimePicker.get(Calendar.HOUR_OF_DAY), dateTimePicker.get(Calendar.MINUTE));
-	        	mValidUntil.setText(DateFormat.getDateFormat(context).format(mValidUntilDate) + " " +
-	        			            DateFormat.getTimeFormat(context).format(mValidUntilDate));
+				mValidDateChanged = true;
+				mValidUntil = dateTimePicker.getCalendar().getTime();
+	        	mTextValidUntil.setText(DateFormat.getDateFormat(context).format(mValidUntil) + " " +
+	        			            DateFormat.getTimeFormat(context).format(mValidUntil));
 				dateTimeDialog.dismiss();
 			}
 		});
@@ -393,13 +395,15 @@ public class PlanEditActivity extends Activity {
 		});
 
 		((Button) dateTimeDialogView.findViewById(R.id.ResetDateTime)).setOnClickListener(new OnClickListener() {
-
 			public void onClick(View v) {
 				dateTimePicker.reset();
 			}
 		});
 	
-		
+		if (mValidUntil != null) {
+			dateTimePicker.updateDate(mValidUntil.getYear()+1900, mValidUntil.getMonth(), mValidUntil.getDate());
+			dateTimePicker.updateTime(mValidUntil.getHours(), mValidUntil.getMinutes());
+		}
 		
 		dateTimePicker.setIs24HourView(is24h);
 		dateTimeDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
