@@ -16,16 +16,16 @@ public class AlarmSetter extends BroadcastReceiver {
         dbHelper.open();
         Cursor cursor = dbHelper.fetchActivePlans();
 
-        if (cursor.getCount() > 0)
-	        do {
-	        	long rowId = cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseAdapter.KEY_ROWID));
-	        	Long next = cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseAdapter.KEY_VALIDUNTIL));
-	    		Long delay = cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseAdapter.KEY_DELAY));
-	    		if (next != null) {
-	    			if (delay != null) next += delay * 1000;
-	    			ActivateEvent.setNewAlarm(context, rowId, next, delay);
-	    		}
-	        } while (cursor.moveToNext());
+    	while (cursor.moveToNext()) {
+        	long rowId = cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseAdapter.KEY_ROWID));
+        	Long next = cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseAdapter.KEY_VALIDUNTIL));
+    		Long delay = cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseAdapter.KEY_DELAY));
+    		//t boolean active = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseAdapter.KEY_AUTO)) != 0;
+    		if (next != null) {
+    			if (delay != null) next += delay * 1000;
+    			ActivateEvent.setNewAlarm(context, rowId, next, delay);
+    		}
+        }
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.macdems.planactivator;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import android.app.Activity;
@@ -355,6 +354,11 @@ public class PlanEditActivity extends Activity {
         if (mValidDateChanged)
         	mDbHelper.updateValidityDate(mRowId, mValidUntil);
 
+        // Reset the alarm if needed
+        if (active && mValidUntil != null) {
+        	ActivateEvent.setNewAlarm(this, mRowId, mValidUntil.getTime(), delay);
+        }
+        
         return true;
     }
 
